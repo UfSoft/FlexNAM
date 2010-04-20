@@ -1,0 +1,13 @@
+syntax: glob
+Artwork/*
+Artwork/**/*
+scripts/**
+tests/**
+.config/logs/**
+.config/**
+.externalToolBuilders/**
+
+syntax: regexp
+^flex/generated(.*)
+^python/nam/shared/NAM.swf(.*)$
+^python/nam/locale/(.*)/LC_MESSAGES/messages.mo$
