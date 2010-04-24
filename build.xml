@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="Network Audio Monitor" basedir="." default="main">
+  <property name="FLEX_HOME" value="/opt/Adobe/SDKs/Flex/3.2.0"/>
+  <property name="APP_ROOT" value="./"/>
+  <property name="PACKAGE_NAME_LOWER" value="nam"/>
+  <property name="PACKAGE_NAME_UPPER" value="NAM"/>
+  <property name="DEPLOY_DIR" value="${APP_ROOT}/python/${PACKAGE_NAME_LOWER}/shared"/>
+  <property name="asdoc" value="${FLEX_HOME}bin/asdoc"/>
+  <property name="swf.version" value="9.0.0"/>
+
+  <taskdef resource="flexTasks.tasks"
+           classpath="${FLEX_HOME}/ant/lib/flexTasks.jar"/>
+    <target name="main">
+        <mxmlc file="${APP_ROOT}/flex/${PACKAGE_NAME_UPPER}.mxml"
+               output="${DEPLOY_DIR}/${PACKAGE_NAME_UPPER}.swf"
+               actionscript-file-encoding="UTF-8"
+               keep-generated-actionscript="false"
+               incremental="true"
+               target-player="${swf.version}">
+            <load-config filename="${FLEX_HOME}/frameworks/flex-config.xml"/>
+            <source-path path-element="${FLEX_HOME}/frameworks"/>
+            <compiler.library-path dir="${APP_ROOT}/flex/lib" append="true">
+              <include name="ReflexUtil3.swc"/>
+            </compiler.library-path>
+        </mxmlc>
+    </target>
+  <target name="wrapper">
+    <html-wrapper
+        title="Network Audio Monitor"
+        file="index.html"
+        height="100%"
+        width="100%"
+        bgcolor="#333333"
+        application="${PACKAGE_NAME_LOWER}"
+        swf="${PACKAGE_NAME_UPPER}"
+        version-major="9"
+        version-minor="0"
+        version-revision="0"
+        history="true"
+        template="express-installation"
+        output="${DEPLOY_DIR}"/>
+  </target>
+  <target name="clean">
+    <delete>
+       <fileset dir="${DEPLOY_DIR}" includes="${PACKAGE_NAME_UPPER}.swf"/>
+        <!-- Deletes playerProductInstall.swf -->
+        <fileset dir="${APP_ROOT}/python/${PACKAGE_NAME_LOWER}/shared"
+                includes="playerProductInstall.swf"
+                defaultexcludes="false"/>
+        <!-- Deletes index.html and historyFrame.html -->
+        <fileset dir="${APP_ROOT}" includes="*.html" defaultexcludes="false"/>
+        <!-- Deletes history.css -->
+        <fileset dir="${APP_ROOT}" includes="*.css" defaultexcludes="false"/>
+        <!-- Deletes history.js and AC_OETags.js -->
+        <fileset dir="${APP_ROOT}" includes="*.js" defaultexcludes="false"/>
+      </delete>
+  </target>
+</project>
