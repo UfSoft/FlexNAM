@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Image xmlns:mx="http://www.adobe.com/2006/mxml"
+          width="18" height="18"
+          useHandCursor="true" buttonMode="true"
+          initialize="initializeIcon()"
+          click="clicked()">
+  <mx:Script>
+  <![CDATA[
+    import flash.display.DisplayObject;
+    import flash.events.Event;
+    import mx.core.Application;
+    import mx.managers.PopUpManager;
+
+    import org.osflash.thunderbolt.Logger;
+
+    import org.ufsoft.nam.components.Authentication;
+
+
+    [Bindable]
+    [Embed('/assets/icons/login.svgz')]
+    private var loginIcon:Class;
+
+    [Bindable]
+    [Embed('/assets/icons/logout.svgz')]
+    private var logoutIcon:Class;
+
+    private var authenticated:Boolean = false;
+
+    private function initializeIcon():void {
+      this.source = loginIcon;
+    }
+
+    private function clicked():void {
+      if ( Application.application.authenticatedUser ) {
+        Application.application.logoutUser();
+      } else {
+        Application.application.showAuthForm();
+      }
+
+    }
+
+    public function toggleAuthStatus(): void {
+      if ( Application.application.authenticatedUser ) {
+        this.source = logoutIcon;
+      } else {
+        this.source = loginIcon;
+      }
+    }
+
+
+  ]]>
+  </mx:Script>
+</mx:Image>

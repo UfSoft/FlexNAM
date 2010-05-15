@@ -9,5 +9,5 @@ tests/**
 
 syntax: regexp
 ^flex/generated(.*)
-^python/nam/shared/NAM.swf(.*)$
+^python/nam/shared/NetworkAudioMonitor.swf(.*)$
 ^python/nam/locale/(.*)/LC_MESSAGES/messages.mo$

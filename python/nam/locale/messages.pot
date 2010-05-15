@@ -1,0 +1,54 @@
+# Translations template for NetworkAudioMonitor.
+# Copyright (C) 2010 UfSoft.org
+# This file is distributed under the same license as the NetworkAudioMonitor
+# project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NetworkAudioMonitor 0.1\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2010-04-28 03:52+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 1.0dev-r0\n"
+
+#: flex/org/ufsoft/nam/components/Authentication.mxml:16
+msgid "Username:"
+msgstr ""
+
+#: flex/org/ufsoft/nam/components/Authentication.mxml:19
+msgid "Password:"
+msgstr ""
+
+#: flex/org/ufsoft/nam/components/Authentication.mxml:22
+msgid "Authenticate"
+msgstr ""
+
+#: flex/org/ufsoft/nam/components/Authentication.mxml:23
+msgid "Cancel"
+msgstr ""
+
+#: flex/org/ufsoft/nam/components/Authentication.mxml:25
+msgid "Authentication Required"
+msgstr ""
+
+#: flex/org/ufsoft/nam/controls/FullScreenImageLink.mxml:81
+#: flex/org/ufsoft/nam/controls/FullScreenImageLink.mxml:89
+msgid "Exit Full Screen Mode"
+msgstr ""
+
+#: flex/org/ufsoft/nam/controls/FullScreenImageLink.mxml:83
+#: flex/org/ufsoft/nam/controls/FullScreenImageLink.mxml:91
+msgid "Enter Fullscreen Mode"
+msgstr ""
+
+#: flex/org/ufsoft/nam/controls/RTPImageLink.mxml:51
+msgid "Go to RTP's Website"
+msgstr ""
+

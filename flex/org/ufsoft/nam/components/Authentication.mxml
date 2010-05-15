@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:controls="org.ufsoft.nam.controls.*"
+                title="{resourceManager.getString('nam', 'Authentication Required')}"
+                creationComplete="creationComplete()"
+                layout="vertical">
+  <mx:Script>
+  <![CDATA[
+    import flash.events.Event;
+    import mx.managers.PopUpManager;
+    import mx.core.Application;
+    import mx.resources.ResourceManager;
+
+    import org.osflash.thunderbolt.Logger;
+
+    [Bindable]
+    private var usernameLabel:String;
+    [Bindable]
+    private var passwordLabel:String;
+
+
+    private function setupTranslations():void {
+      ResourceManager.getInstance().addEventListener(Event.CHANGE, onTranslationLoaded);
+    }
+
+    private function onTranslationLoaded(event:Event):void {
+      Logger.info("Pop-up should be centered");
+      usernameLabel = ResourceManager.getInstance().getString('nam', 'Username:');
+      passwordLabel = ResourceManager.getInstance().getString('nam', 'Password:');
+    }
+
+    private function creationComplete():void {
+      PopUpManager.centerPopUp(this); // center the popup
+      Logger.info("Pop-up should be centered");
+    }
+
+    private function hideWindow():void {
+      PopUpManager.removePopUp(this);
+    }
+
+    private function authenticate():void {
+      PopUpManager.removePopUp(this);
+      Application.application.loginUser(username.text, password.text);
+      username.text = "";
+      password.text = "";
+    }
+
+  ]]>
+  </mx:Script>
+
+  <mx:Form>
+    <mx:FormItem label='{resourceManager.getString("nam", "Language:")}'>
+      <controls:LanguageComboBox/>
+    </mx:FormItem>
+    <mx:FormItem label="{usernameLabel}">
+      <mx:TextInput id="username"/>
+    </mx:FormItem>
+    <mx:FormItem label="{passwordLabel}">
+      <mx:TextInput id="password" displayAsPassword="true"/>
+    </mx:FormItem>
+  </mx:Form>
+  <mx:ControlBar horizontalAlign="right">
+    <mx:Button id="submit" label="{resourceManager.getString('nam', 'Authenticate')}"
+               click="authenticate()"/>
+    <mx:Button id="cancel" label="{resourceManager.getString('nam', 'Cancel')}"
+               click="hideWindow()"/>
+  </mx:ControlBar>
+</mx:TitleWindow>

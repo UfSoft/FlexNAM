@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Image xmlns:mx="http://www.adobe.com/2006/mxml"
+          source="@Embed('/assets/images/rtp.png')"
+          useHandCursor="true"
+          buttonMode="true"
+          toolTip="{toolTipText}"
+          click="followLink()"
+          creationComplete="onCreationComplete(event)">
+  <mx:Script>
+  <![CDATA[
+    import flash.events.Event;
+    import flash.net.navigateToURL;
+    import flash.net.URLRequest;
+    import mx.events.FlexEvent;
+    import mx.resources.ResourceManager;
+
+    [Bindable]
+    private var toolTipText:String;
+
+    private function onCreationComplete(event:FlexEvent):void {
+      ResourceManager.getInstance().addEventListener(Event.CHANGE, onTranslationLoaded);
+    }
+
+    private function onTranslationLoaded(event:Event):void {
+      toolTipText = ResourceManager.getInstance().getString("sb", "Go to RTP's Website");
+      //ResourceManager.getInstance().removeEventListener(Event.CHANGE, onTranslationLoaded);
+    }
+
+    private function followLink():void {
+      var req:URLRequest = new URLRequest('http://www.rtp.pt');
+      navigateToURL(req, '_blank');
+    }
+  ]]>
+  </mx:Script>
+</mx:Image>

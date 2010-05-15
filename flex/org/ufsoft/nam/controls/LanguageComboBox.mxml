@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:ComboBox xmlns:mx="http://www.adobe.com/2006/mxml"
+             dataProvider="{languages}"
+             labelField="display_name"
+             styleName="languagesComboBox"
+             change="onSelectionChanged(event)"
+             creationComplete="onCreationComplete(event)">
+  <mx:Script>
+  <![CDATA[
+    import mx.collections.ArrayCollection;
+    import mx.collections.ItemResponder;
+    import mx.core.Application;
+    import mx.events.FlexEvent;
+    import mx.events.ListEvent;
+
+    import mx.rpc.AsyncToken;
+    import mx.rpc.events.ResultEvent;
+    import mx.rpc.events.FaultEvent;
+
+    import org.osflash.thunderbolt.Logger;
+
+    import org.ufsoft.i18n.*;
+
+    private var locale: Locale = Locale.getInstance();
+
+    [Bindable]
+    private var languages:ArrayCollection = new ArrayCollection();
+
+    private function onCreationComplete(event:FlexEvent):void {
+      var token:AsyncToken = Application.application.getI18nService().get_languages();
+      Logger.info("Created Token:", token)
+      token.addResponder(new ItemResponder(gotLanguages, failedToGetLanguages, token));
+    }
+
+    private function gotLanguages(event:ResultEvent, token:AsyncToken):void {
+      languages = event.result as ArrayCollection;
+      for each ( var language:Language in languages ) {
+        if ( language.locale == locale.getLocale() ) {
+          this.selectedItem = language;
+          break;
+        }
+      }
+    }
+
+    private function failedToGetLanguages(event:FaultEvent, token:AsyncToken):void {
+      Logger.error("Failed to get Languages", event);
+    }
+
+    private function onTranslationLoadedEvent(event:TranslationEvent):void {
+      for each ( var language:Language in languages ) {
+        if ( language.locale == event.locale) {
+          this.selectedItem = language;
+          break;
+        }
+      }
+    }
+
+    private function onSelectionChanged(event:ListEvent):void {
+      Logger.info("Languages combo selection changed");
+      locale.load(this.selectedItem.locale);
+    }
+  ]]>
+  </mx:Script>
+</mx:ComboBox>

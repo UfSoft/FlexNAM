@@ -1,0 +1,95 @@
+@CHARSET "UTF-8";
+
+@font-face {
+    src: url(/assets/fonts/Domestic_Manners.ttf);
+    fontFamily: "Handwrite";
+    fontStyle: normal;
+    fontWeight: normal;
+}
+
+global {
+  fontSize: 12;
+}
+
+.controlBar {
+  paddingTop: 0;
+  paddingRight: 2;
+  paddingBottom: 0;
+  paddingLeft: 0;
+  fontSize: 10;
+}
+.copyText {
+  letterSpacing: 2;
+  fontSize: 8;
+  color: #ffffff;
+}
+.copyTextName {
+  fontSize: 9;
+  fontFamily: "Handwrite";
+}
+
+.languagesComboBox {
+  fontSize: 10;
+}
+
+.collapseLeft
+{
+  /*disabledSkin: Embed(source="darkroom.swf", symbol="clear");
+  downSkin: Embed(source="darkroom.swf", symbol="clear");
+  overSkin: Embed(source="darkroom.swf", symbol="clear");
+  upSkin: Embed(source="darkroom.swf", symbol="clear");
+  selectedDisabledSkin: Embed(source="darkroom.swf", symbol="clear");
+  selectedDownSkin: Embed(source="darkroom.swf", symbol="clear");
+  selectedOverSkin: Embed(source="darkroom.swf", symbol="clear");
+  selectedUpSkin: Embed(source="darkroom.swf", symbol="clear");
+  disabledIcon: Embed(source="darkroom.swf", symbol="collapseArrowLeft_Up");*/
+  disabledIcon: Embed(source="/assets/images/right_arrow.png");
+  /*downIcon: Embed(source="darkroom.swf", symbol="collapseArrowLeft_Over");*/
+  downIcon: Embed(source="/assets/images/right_arrow_over.png");
+  /*overIcon: Embed(source="darkroom.swf", symbol="collapseArrowLeft_Over");*/
+  overIcon: Embed(source="/assets/images/right_arrow_over.png");
+  /*upIcon: Embed(source="darkroom.swf", symbol="collapseArrowLeft_Up");*/
+  upIcon: Embed(source="/assets/images/right_arrow.png");
+  /*selectedDisabledIcon: Embed(source="darkroom.swf", symbol="collapseArrowRightSelected_Up");*/
+  selectedDisabledIcon: Embed(source="/assets/images/left_arrow.png");
+  /*selectedDownIcon: Embed(source="darkroom.swf", symbol="collapseArrowRightSelected_Over");*/
+  selectedDownIcon: Embed(source="/assets/images/left_arrow_over.png");
+  /*selectedOverIcon: Embed(source="darkroom.swf", symbol="collapseArrowRightSelected_Over");*/
+  selectedOverIcon: Embed(source="/assets/images/left_arrow_over.png");
+  /*selectedUpIcon: Embed(source="darkroom.swf", symbol="collapseArrowRightSelected_Up");*/
+  selectedUpIcon: Embed(source="/assets/images/left_arrow.png");
+  paddingLeft:0;
+  paddingRight:0;
+  top: 0;
+  right: 0;
+  width: 8;
+  height: 60;
+}
+
+.collapseLeftVBox {
+  resizeEffect: ClassReference("mx.effects.Resize");
+  paddingLeft: 2;
+  paddingTop: 2;
+  paddingRight: 2;
+  paddingBottom: 2;
+  cornerRadius: 8;
+  borderStyle: solid;
+  borderSides: "bottom left top";
+  dropShadowColor: #333333;
+  dropShadowEnabled: true;
+}
+
+.sourceBox {
+  fontSize: 12;
+  fontThickness: 0;
+  color: #ffffff;
+  cornerRadius: 8;
+  borderStyle: solid;
+  borderThickness: 0;
+  backgroundColor: #006699;
+  verticalGap: 2;
+  paddingLeft: 3;
+  paddingTop: 3;
+  paddingRight: 3;
+  paddingBottom: 3;
+}

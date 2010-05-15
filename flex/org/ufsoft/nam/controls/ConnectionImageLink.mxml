@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Image xmlns:mx="http://www.adobe.com/2006/mxml"
+          width="18" height="18"
+          useHandCursor="true" buttonMode="true"
+          initialize="initializeIcon()">
+  <mx:Script>
+  <![CDATA[
+    [Bindable]
+    [Embed('/assets/icons/network-disconnected.png')]
+    private var connectionDown:Class;
+
+    [Bindable]
+    [Embed('/assets/icons/network-connected.png')]
+    private var connectionUp:Class;
+
+    [Bindable]
+    [Embed('/assets/icons/network-connect.png')]
+    private var connectionConnecting:Class;
+
+    private function initializeIcon():void {
+      this.source = connectionDown;
+    }
+
+
+  ]]>
+  </mx:Script>
+</mx:Image>

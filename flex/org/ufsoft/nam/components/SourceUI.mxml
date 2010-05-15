@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml"
+         styleName="sourceBox"
+         width="100%"
+         verticalScrollPolicy="off"
+         horizontalScrollPolicy="off">
+
+  <mx:Script source="SourceUI_AS.as"/>
+
+  <mx:HBox width="100%">
+    <mx:Text text="{sourceName}"/>
+    <mx:Spacer width="100%"/>
+    <mx:Image source="@Embed(source='/assets/icons/configure.png')"
+              width="16" height="16" useHandCursor="true" buttonMode="true"/>
+  </mx:HBox>
+  <mx:HBox verticalAlign="middle" width="100%">
+    <mx:ProgressBar id="buffer" width="100%" labelPlacement="center" label="Buffering %3%%"/>
+    <mx:Image source="@Embed(source='/assets/icons/source-stopped.png')" width="16" height="16"/>
+  </mx:HBox>
+</mx:VBox>

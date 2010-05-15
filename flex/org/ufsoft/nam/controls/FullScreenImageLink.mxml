@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Image xmlns:mx="http://www.adobe.com/2006/mxml"
+          source="@Embed(source='/assets/images/fullscreen.png')"
+          useHandCursor="true"
+          buttonMode="true"
+          toolTip="{toolTipText}"
+          click="fullScreen()"
+          creationComplete="onCreationComplete(event)">
+  <mx:Script>
+  <![CDATA[
+    import mx.events.FlexEvent;
+    import mx.resources.ResourceManager;
+    import flash.display.StageDisplayState;
+    import flash.events.Event;
+    import flash.events.FullScreenEvent;
+
+    import org.osflash.thunderbolt.Logger;
+
+    private var fullScreenListenerFlag:Boolean = true;
+
+    [Bindable]
+    private var toolTipText:String;
+
+    private function onCreationComplete(event:FlexEvent):void {
+      Logger.info("FS creationComplete");
+      ResourceManager.getInstance().addEventListener(Event.CHANGE, onTranslationLoaded);
+    }
+
+    private function onTranslationLoaded(event:Event):void {
+      if ( stage.displayState == StageDisplayState.FULL_SCREEN ) {
+        toolTipText = ResourceManager.getInstance().getString("sb", "Exit Full Screen Mode");
+      } else {
+        toolTipText = ResourceManager.getInstance().getString("sb", "Enter Fullscreen Mode");
+      }
+    }
+
+    private function onFullScreen(e:FullScreenEvent):void {
+      if (e.fullScreen) {
+        toolTipText = ResourceManager.getInstance().getString("sb", "Exit Full Screen Mode");
+      } else {
+        toolTipText = ResourceManager.getInstance().getString("sb", "Enter Fullscreen Mode");
+      }
+    }
+
+    private function fullScreen():void {
+      if (stage && fullScreenListenerFlag) {
+        stage.addEventListener(FullScreenEvent.FULL_SCREEN, onFullScreen);
+        fullScreenListenerFlag = false;
+      }
+
+      if (stage.displayState == StageDisplayState.FULL_SCREEN) {
+        stage.displayState = StageDisplayState.NORMAL;
+      } else {
+        stage.displayState = StageDisplayState.FULL_SCREEN;
+      }
+    }
+  ]]>
+  </mx:Script>
+</mx:Image>
