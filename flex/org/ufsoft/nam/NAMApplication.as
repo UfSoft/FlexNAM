@@ -228,15 +228,15 @@ package org.ufsoft.nam {
       token.addResponder(new AsyncResponder(loginSucess, loginFailed));
 
       var utoken:AsyncToken = getService().get_user();
-      token.addResponder(new ItemResponder(getAccountSuccess, getAccountFailure));
+      utoken.addResponder(new ItemResponder(getAccountSuccess, getAccountFailure));
     }
 
     private function loginSucess(event:ResultEvent, token:AsyncToken):void {
       Logger.info("Authentication Success", event.result);
     }
 
-    private function getAccountSuccess(event:ResultEvent, token:AsyncToken):void {
-      //Logger.info("Get Account Success0", event);
+    private function getAccountSuccess(event:ResultEvent, token:AsyncToken=null):void {
+      Logger.info("Get Account Success0", event.result, token);
       //Logger.info("Get Account Success1", event.result as User);
       authenticatedUser = event.result as User;
       Logger.info("Get Account Success II", authenticatedUser);

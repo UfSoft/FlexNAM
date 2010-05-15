@@ -110,8 +110,6 @@ class User(DeclarativeBase):
     """Repositories users table"""
     __tablename__ = 'accounts'
 
-    is_somebody     = True
-
     username        = db.Column(db.String, primary_key=True)
     display_name    = db.Column(db.String(50))
     password_hash   = db.Column(db.String)
@@ -138,8 +136,16 @@ class User(DeclarativeBase):
             return True
         return False
 
+    @property
+    def is_somebody(self):
+        return not isinstance(self, AnonymousUser)
+
+    def __repr__(self):
+        return '<User username=%s, is_somebody=%s, is_admin=%s>' % (
+            self.username, self.is_somebody, self.is_admin)
+
 class AnonymousUser(User):
-    is_somebody = is_admin = False
+    is_admin = False
 
 class Source(DeclarativeBase):
     __tablename__   = 'sources'

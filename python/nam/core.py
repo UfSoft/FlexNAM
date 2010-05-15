@@ -176,28 +176,22 @@ class Application(object):
         ))
 
 #        # Database class aliases
-#        class_mapper.mapClass(SaClassDef(User, '%s.User' % AS_MODELS_NAMESPACE))
-#        class_mapper.mapClass(SaClassDef(AnonymousUser, '%s.AnonymousUser' % AS_MODELS_NAMESPACE))
-
-        class_mapper.mapClass(DynamicClassDef(User, '%s.User' % AS_MODELS_NAMESPACE, ('username', 'is_admin', 'is_somebody')))
-#        class_mapper.mapClass(DynamicClassDef(AnonymousUser, '%s.AnonymousUser' % AS_MODELS_NAMESPACE))
-
-#        class_mapper.mapClass(SaClassDef(Sound, '%s.Sound' % AS_NAMESPACE))
-#        class_mapper.mapClass(SaClassDef(SoundTag, '%s.SoundTag' % AS_NAMESPACE))
+        class_mapper.mapClass(DynamicClassDef(User, '%s.User' % AS_MODELS_NAMESPACE))
+        class_mapper.mapClass(DynamicClassDef(AnonymousUser, '%s.User' % AS_MODELS_NAMESPACE))
 
 
         # Map service targets to controller methods
-        sa_obj = controllers.SAObject()
-        sa_service = Service('SA')
-        sa_service.mapTarget(SACallableTarget(sa_obj.load, 'load'))
-        sa_service.mapTarget(SACallableTarget(sa_obj.loadAttr, 'loadAttr'))
-        sa_service.mapTarget(SACallableTarget(sa_obj.loadAll, 'loadAll'))
-        sa_service.mapTarget(SACallableTarget(sa_obj.saveList, 'saveList'))
-        sa_service.mapTarget(SACallableTarget(sa_obj.save, 'save'))
-        sa_service.mapTarget(SACallableTarget(sa_obj.remove, 'remove'))
-        sa_service.mapTarget(SACallableTarget(sa_obj.removeList, 'removeList'))
-        sa_service.mapTarget(SACallableTarget(sa_obj.insertDefaultData, 'insertDefaultData'))
-        channel_set.service_mapper.mapService(sa_service)
+#        sa_obj = controllers.SAObject()
+#        sa_service = Service('SA')
+#        sa_service.mapTarget(SACallableTarget(sa_obj.load, 'load'))
+#        sa_service.mapTarget(SACallableTarget(sa_obj.loadAttr, 'loadAttr'))
+#        sa_service.mapTarget(SACallableTarget(sa_obj.loadAll, 'loadAll'))
+#        sa_service.mapTarget(SACallableTarget(sa_obj.saveList, 'saveList'))
+#        sa_service.mapTarget(SACallableTarget(sa_obj.save, 'save'))
+#        sa_service.mapTarget(SACallableTarget(sa_obj.remove, 'remove'))
+#        sa_service.mapTarget(SACallableTarget(sa_obj.removeList, 'removeList'))
+#        sa_service.mapTarget(SACallableTarget(sa_obj.insertDefaultData, 'insertDefaultData'))
+#        channel_set.service_mapper.mapService(sa_service)
 
         # I18N Service
         i18n_obj = controllers.I18nService()
@@ -227,7 +221,7 @@ class Application(object):
         # We're going to use the same
         # Encoder and Decoder for all channels
         encoder = Encoder(use_collections=True, use_proxies=True,
-                          class_def_mapper=class_mapper, use_legacy_xml=True)
+                          class_def_mapper=class_mapper, use_legacy_xml=False)
         decoder = Decoder(class_def_mapper=class_mapper)
         for channel in channel_set:
             channel.endpoint.encoder = encoder

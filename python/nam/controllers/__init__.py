@@ -35,7 +35,7 @@ class Auth(object):
             if account:
                 log.debug("REturning account %s", account)
 #                return FUser(account.username, account.is_somebody, account.is_admin)
-                session.expunge(account)
+#                session.expunge(account)
                 return account
             log.debug("REturning annonymous account")
             return AnonymousUser()

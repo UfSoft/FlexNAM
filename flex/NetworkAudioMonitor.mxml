@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<app:NAMApplication name="NetworkAudioMonitor"
+                xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:app="org.ufsoft.nam.*"
+                xmlns:controls="org.ufsoft.nam.controls.*"
+                xmlns:components="org.ufsoft.nam.components.*"
+                scriptRecursionLimit="1000"
+                scriptTimeLimit="60"
+                usePreloader="true"
+                pageTitle="RTP Network Audio Monitor"
+                frameRate="16"
+                layout="absolute"
+                themeColor="0x222222"
+                backgroundColor="0x222222"
+                backgroundGradientColors="{[0x222222, 0x0]}"
+                backgroundGradientAlphas="{[1, 0.7]}">
+  <mx:Style source="assets/css/Main.css"/>
+  <mx:Style source="assets/css/style.css"/>
+  <mx:Script>
+  <![CDATA[
+    import com.flexspy.FlexSpy;
+  ]]>
+  </mx:Script>
+    <mx:ApplicationControlBar horizontalGap="4"
+                              width="100%"
+                              height="30"
+                              dock="true"
+                              verticalAlign="middle"
+                              styleName="controlBar">
+      <mx:Button id="btnFlexSpy" label="FlexSpy" click="FlexSpy.show()" />
+      <mx:Spacer width="100%"/>
+      <controls:AuthImageLink id="authImageLink"/>
+      <controls:ConnectionImageLink/>
+      <mx:VRule height="30"/>
+      <controls:LanguageComboBox styleName="languagesComboBox"/>
+      <mx:VRule height="30"/>
+      <controls:FullScreenImageLink/>
+    </mx:ApplicationControlBar>
+  <mx:VBox width="100%"
+           height="100%"
+           paddingTop="4"
+           paddingRight="0"
+           paddingBottom="2"
+           paddingLeft="4"
+           verticalGap="0"
+           horizontalGap="0">
+    <mx:HBox width="100%" height="100%" horizontalGap="0">
+        <mx:VBox width="100%" height="100%"
+                    borderStyle="solid"
+                    borderColor="0x555555">
+            <mx:Text text="© Pedro Algarvio" styleName="copyText"/>
+        </mx:VBox>
+        <mx:VBox height="100%" verticalAlign="top" paddingLeft="2" paddingTop="10">
+          <mx:Button click="toggleSourcesBox()" width="8" height="60"
+                     toggle="true" styleName="collapseLeft"/>
+        </mx:VBox>
+        <mx:VBox id="sourcesBox" width="300" height="100%"
+                    borderStyle="solid" styleName="collapseLeftVBox"
+                    borderColor="0x555555">
+          <components:SourceUI sourceName="Antena 1"/>
+          <components:SourceUI sourceName="Antena 2"/>
+          <components:SourceUI sourceName="Antena 3"/>
+          <components:SourceUI sourceName="Rádio Vivace"/>
+        </mx:VBox>
+    </mx:HBox>
+    <mx:HBox bottom="0"
+             left="0"
+             width="100%"
+             height="22"
+             horizontalAlign="right"
+             horizontalGap="1"
+             paddingRight="2"
+             verticalAlign="middle"
+             horizontalScrollPolicy="off" styleName="copyText">
+      <mx:Spacer width="100%"/>
+      <controls:RTPImageLink source="@Embed('/assets/images/rtp_small.png')"/>
+      <mx:Text text="2010"/><mx:Text text="©"/>
+      <mx:Text text="Pedro Algarvio" styleName="copyTextName"/>
+    </mx:HBox>
+  </mx:VBox>
+</app:NAMApplication>
